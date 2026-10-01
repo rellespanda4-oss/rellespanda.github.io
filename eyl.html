@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EYL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Barlow:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050506; --panel:#101114; --edge:#2a2d33; --steel:#a9afb9; --chrome:#f1f3f6;
+  --display:'Pirata One','Old English Text MT',Georgia,serif;
+  --body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050506}}
+:root[data-theme="dark"]{--bg:#050506}
+*,*::before,*::after{box-sizing:inherit}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; min-height:100vh; min-height:100dvh; background:
+    radial-gradient(60% 40% at 50% 8%, #20232a 0%, transparent 70%),
+    var(--bg);
+  color:var(--chrome); font-family:var(--body);
+  display:flex; justify-content:center; padding:32px 20px 48px;
+}
+main{width:100%; max-width:440px; text-align:center}
+.crown{width:92px; height:auto; display:block; margin:8px auto 0; filter:drop-shadow(0 0 10px rgba(255,255,255,.25))}
+h1{
+  font-family:var(--display); font-weight:400; font-size:clamp(88px,26vw,128px); line-height:1; margin:0;
+  letter-spacing:.04em;
+  background:linear-gradient(180deg,#ffffff 0%,#b9bec8 38%,#4b4f58 52%,#d9dde4 70%,#8d929c 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 4px 0 #000) drop-shadow(0 0 18px rgba(255,255,255,.12));
+}
+.tag{margin:6px 0 30px; color:var(--steel); font-size:17px}
+.links{display:grid; gap:16px}
+.btn{
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  padding:16px 18px; min-height:76px; justify-content:center; text-decoration:none; -webkit-tap-highlight-color:transparent; color:var(--chrome);
+  background:linear-gradient(180deg,#17181c,var(--panel));
+  border:1px solid var(--edge); border-radius:4px;
+  clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);
+  transition:background .2s,color .2s;
+}
+.btn b{font-size:20px; font-weight:600}
+.btn span{font-size:15px; color:var(--steel)}
+.btn:hover{background:linear-gradient(180deg,#f1f3f6,#aeb3bd); color:#050506}
+.btn:hover span{color:#2a2d33}
+.btn:focus-visible{outline:2px solid #fff; outline-offset:3px}
+.main{border-color:#8d929c}
+footer{margin-top:34px; color:#5d616b; font-size:13px}
+@media (max-width:360px){body{padding:24px 14px 40px}.btn b{font-size:17px}.btn span{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <svg class="crown" viewBox="0 0 100 64" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#7d828c"/><stop offset="1" stop-color="#2c2f36"/>
+    </linearGradient></defs>
+    <path d="M6 54 L10 20 L30 36 L50 6 L70 36 L90 20 L94 54 Z" fill="url(#g)" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect x="6" y="54" width="88" height="7" rx="1" fill="#1b1d22" stroke="#aeb3bd" stroke-width="1.2"/>
+  </svg>
+  <h1>EYL</h1>
+  <p class="tag">Enlaces oficiales de EYL</p>
+
+  <nav class="links" id="links" aria-label="Enlaces"></nav>
+  <footer>EYL</footer>
+</main>
+
+<script>
+const ENLACES = [
+  { nombre: "Grupo de WhatsApp", detalle: "Entra al grupo", url: "https://chat.whatsapp.com/HiO9rCyFNYeEtrnselWfVw?mode=gi_t", principal: true },
+  { nombre: "TikTok",    detalle: "Síguenos en TikTok",    url: "https://www.tiktok.com/@e.y.l89" },
+  { nombre: "Instagram", detalle: "Síguenos en Instagram", url: "https://www.instagram.com/vault2578" },
+  { nombre: "Facebook",  detalle: "Síguenos en Facebook",  url: "https://www.facebook.com/share/1By9dDH5dx/?mibextid=wwXIfr" }
+];
+const cont = document.getElementById("links");
+ENLACES.forEach(e => {
+  const a = document.createElement("a");
+  a.className = "btn" + (e.principal ? " main" : "");
+  a.href = e.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+  a.innerHTML = "<b></b><span></span>";
+  a.querySelector("b").textContent = e.nombre;
+  a.querySelector("span").textContent = e.detalle;
+  cont.appendChild(a);
+});
+</script>
+</body>
+</html>
